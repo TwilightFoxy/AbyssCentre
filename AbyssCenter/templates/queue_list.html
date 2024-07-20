@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Queue List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Queue</h1>
+        <a href="{% url 'add_to_queue' %}" class="btn btn-primary">Add New Item</a>
+        <ul class="list-group mt-3">
+            {% for item in items %}
+            <li class="list-group-item">
+                <strong>{{ item.queue_type }}</strong> – {{ item.status }}
+                <p>{{ item.comment }}</p>
+                <a href="{% url 'update_status' item.id 'IN_PROGRESS' %}" class="btn btn-warning">In Progress</a>
+                <a href="{% url 'update_status' item.id 'COMPLETED' %}" class="btn btn-success">Completed</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'home' %}" class="btn btn-secondary mt-3">Home</a>
+    </div>
+</body>
+</html>
